@@ -1,7 +1,7 @@
 # WEB SERVICE PROGRAMMING
 
 <p align="center">
-  <img src="https://www.hafidmukhlasin.com/wp-content/uploads/2015/12/rest.jpg"/>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIN3ugV8qUKM72eTgMZspMBX3nZJ9O9QhMsg&usqp=CAU"/>
 </p>
 
 <p align="center">
@@ -13,10 +13,10 @@
 ---
 
 ### List Tugas Web Service
-- [x] ([Tugas 3 JSON](https://square.github.io/retrofit/))
-- [x] ([Tugas 5 Public REST API](https://square.github.io/retrofit/))
-- []
-- []
+- [x] Tugas 3 JSON [link](https://square.github.io/retrofit/)
+- [x] Tugas 5 Public Rest API [link](https://square.github.io/retrofit/)
+- [ ]
+- [ ]
 
 ---
 
