@@ -14,7 +14,7 @@
 
 ### List Tugas Web Service
 - [x] Tugas 3 JSON ([link](https://github.com/imufiid/Web-Service-Programming/tree/master/tugas3_JSON))
-- [x] Tugas 5 Public Rest API [link](https://github.com/imufiid/Web-Service-Programming/tree/master/tugas5_Public_REST_API)
+- [x] Tugas 5 Public Rest API ([link](https://github.com/imufiid/Web-Service-Programming/tree/master/tugas5_Public_REST_API))
 - [ ] Next Tugas
 
 ---
