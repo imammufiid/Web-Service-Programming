@@ -1,0 +1,33 @@
+{
+    "tugas" : "Membuat file json berisi anggota keluarga",
+    "my_family" : [
+        {
+            "nama" : "Ismail",
+            "umur" : 55,
+            "tempat_lahir" : "Blitar",
+            "pekerjaan" : "Swasta",
+            "status_hubungan" : true
+        },
+        {
+            "nama" : "Umi Zazilah",
+            "umur" : 55,
+            "tempat_lahir" : "Blitar",
+            "pekerjaan" : "Ibu rumah tangga",
+            "status_hubungan" : true
+        },
+        {
+            "nama" : "Imam Abdul Ngizza",
+            "umur" : 27,
+            "tempat_lahir" : "Blitar",
+            "pekerjaan" : "Karyawan swasta",
+            "status_hubungan" : false
+        },
+        {
+            "nama" : "Imam Mufiid",
+            "umur" : 21,
+            "tempat_lahir" : "Pangkalan Bun",
+            "pekerjaan" : "Mahasiswa",
+            "status_hubungan" : false
+        }
+    ]
+}
