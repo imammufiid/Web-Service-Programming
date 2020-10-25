@@ -146,10 +146,7 @@ function loadpage(page) {
   }
 }
 
-
-document.addEventListener('DOMContentLoaded', function () {
-  var elems = document.querySelectorAll('.sidenav');
-  var instances = M.Sidenav.init(elems);
+function navigation() {
   document.querySelectorAll(".sidenav a, .topnav a").forEach(element => {
     element.addEventListener("click", event => {
       let sideNav = document.querySelector('.sidenav')
@@ -163,4 +160,11 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log(page);
   if(page === "" || page === "!") page = "teams"
   loadpage(page)
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems);
+  navigation()
 });
