@@ -6,7 +6,8 @@ const listEndpoint = {
   base: `${baseUrl}competitions/${leagueId}`,
   team: `${baseUrl}competitions/${leagueId}/teams`,
   standing: `${baseUrl}competitions/${leagueId}/standings`,
-  match: `${baseUrl}competitions/${leagueId}/matches`
+  match: `${baseUrl}competitions/${leagueId}/matches`,
+  teamById: `${baseUrl}teams/`
 }
 
 const contents = document.querySelector('#content-list')
@@ -34,10 +35,16 @@ function getListTeams() {
                 Vanue : ${team.venue} <br>
                 Website : <a href='${team.website}' target='_blank'>${team.website}</a>
             </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">info</i></a>
+            <a modal-trigger" href="#modal1" data-id="${team.id}" class="secondary-content waves-effect waves-light modal-trigger"><i data-id="${team.id}" class="material-icons">info</i></a>
           </li>`
       });
       contents.innerHTML = `<ul class="collection">${teams}</ul>`
+      const detail = document.querySelectorAll('.secondary-content')
+      detail.forEach(btn => {
+        btn.onclick = (event) => {
+          showDetailTeam(event.target.dataset.id)
+        }
+      })
     }).catch(e => {
       console.error(e);
     })
@@ -65,7 +72,7 @@ function getListStanding() {
             <td>${item.lost}</td>
             <td>${item.points}</td>
           </tr>`
-          i++
+        i++
       });
       contents.innerHTML = `<table class="striped centered responsive-table">
         <thead>
@@ -92,16 +99,16 @@ function getListStanding() {
 function getListMatches() {
   title.innerHTML = "Jadwal Liga Primer Inggris"
   fetch(listEndpoint.match, fetchHeader)
-  .then(response => response.json())
-  .then(resJson => {
-    console.log(resJson.matches);
-    let matches = ""
-    let i = 1
-    resJson.matches.forEach(item => {
-      let d = new Date(item.utcDate).toLocaleDateString("id")
-      let scoreHomeTeam = (item.score.fullTime.homeTeam == null?0:item.score.fullTime.homeTeam)
-      let scoreAwayTeam = (item.score.fullTime.awayTeam == null?0:item.score.fullTime.awayTeam)
-      matches += `
+    .then(response => response.json())
+    .then(resJson => {
+      console.log(resJson.matches);
+      let matches = ""
+      let i = 1
+      resJson.matches.forEach(item => {
+        let d = new Date(item.utcDate).toLocaleDateString("id")
+        let scoreHomeTeam = (item.score.fullTime.homeTeam == null ? 0 : item.score.fullTime.homeTeam)
+        let scoreAwayTeam = (item.score.fullTime.awayTeam == null ? 0 : item.score.fullTime.awayTeam)
+        matches += `
         <tr>
           <td>${i}</td>
           <td><b>${item.homeTeam.name}</b> vs <b>${item.awayTeam.name}</b></td>
@@ -109,8 +116,8 @@ function getListMatches() {
           <td>${scoreHomeTeam} - ${scoreHomeTeam}</td>
         </tr>`
         i++
-    });
-    contents.innerHTML = `<table class="striped centered responsive-table">
+      });
+      contents.innerHTML = `<table class="striped centered responsive-table">
       <thead>
         <tr>
           <th></th>
@@ -123,11 +130,48 @@ function getListMatches() {
         ${matches}
       </tbody>
     </table>`
-  }).catch(e => {
-    console.error(e);
-  })
+    }).catch(e => {
+      console.error(e);
+    })
 }
 
+
+function showDetailTeam(id) {
+  let url = listEndpoint.teamById + id
+  let detail = ""
+  const modalContent = document.querySelector('#team-content')
+  modalContent.innerHTML = "<p><i>Tunggu sebentar...</i></p>"
+  fetch(url, fetchHeader)
+    .then(response => response.json())
+    .then(resJson => {
+      console.log(resJson);
+      detail += `
+        <ul>
+          <li>
+            <i class="material-icons">account_circle</i>
+            <b>Name :</b> ${resJson.name}
+          </li>
+          <li>
+            <i class="material-icons">location_on</i>
+            <b>Address :</b> ${resJson.address}
+          </li>
+          <li>
+            <i class="material-icons">home</i>
+            <b>Venue :</b> ${resJson.venue}
+          </li>
+          <li>
+            <i class="material-icons">local_phone</i>
+            <b>Phone :</b> ${resJson.phone}
+          </li>
+          <li>
+            <i class="material-icons">personal_video</i>
+            <b>Website :</b> <a href="${resJson.website}" target="_blank">${resJson.website}</a>
+          </li>
+        </ul>
+      `
+      modalContent.innerHTML = detail
+    })
+}
 
 function loadpage(page) {
   switch (page) {
@@ -140,7 +184,7 @@ function loadpage(page) {
     case "matches":
       getListMatches()
       break;
-  
+
     default:
       break;
   }
@@ -158,7 +202,7 @@ function navigation() {
 
   var page = window.location.hash.substr(1)
   console.log(page);
-  if(page === "" || page === "!") page = "teams"
+  if (page === "" || page === "!") page = "teams"
   loadpage(page)
 }
 
@@ -166,5 +210,7 @@ function navigation() {
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.sidenav');
   var instances = M.Sidenav.init(elems);
+  var elems = document.querySelectorAll('.modal');
+  var instance = M.Modal.init(elems);
   navigation()
 });
