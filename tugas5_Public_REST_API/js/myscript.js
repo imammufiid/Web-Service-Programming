@@ -12,6 +12,7 @@ const listEndpoint = {
 
 const contents = document.querySelector('#content-list')
 const title = document.querySelector('#card-title')
+const loading = "<p><i>Tunggu sebentar...</i></p>"
 const fetchHeader = {
   headers: {
     'X-Auth-Token': ApiKey
@@ -20,6 +21,7 @@ const fetchHeader = {
 
 function getListTeams() {
   title.innerHTML = "Daftar Tim Liga Primer Inggris"
+  contents.innerHTML = loading
   fetch(listEndpoint.team, fetchHeader)
     .then(response => response.json())
     .then(resJson => {
@@ -52,6 +54,7 @@ function getListTeams() {
 
 function getListStanding() {
   title.innerHTML = "Daftar Klasemen Sementara Liga Primer Inggris"
+  contents.innerHTML = loading
   fetch(listEndpoint.standing, fetchHeader)
     .then(response => response.json())
     .then(resJson => {
@@ -98,6 +101,7 @@ function getListStanding() {
 
 function getListMatches() {
   title.innerHTML = "Jadwal Liga Primer Inggris"
+  contents.innerHTML = loading
   fetch(listEndpoint.match, fetchHeader)
     .then(response => response.json())
     .then(resJson => {
@@ -140,7 +144,7 @@ function showDetailTeam(id) {
   let url = listEndpoint.teamById + id
   let detail = ""
   const modalContent = document.querySelector('#team-content')
-  modalContent.innerHTML = "<p><i>Tunggu sebentar...</i></p>"
+  modalContent.innerHTML = loading
   fetch(url, fetchHeader)
     .then(response => response.json())
     .then(resJson => {
