@@ -6,28 +6,28 @@
             "umur" : 55,
             "tempat_lahir" : "Blitar",
             "pekerjaan" : "Swasta",
-            "status_hubungan" : true
+            "status_hubungan" : "menikah"
         },
         {
             "nama" : "Umi Zazilah",
             "umur" : 55,
             "tempat_lahir" : "Blitar",
             "pekerjaan" : "Ibu rumah tangga",
-            "status_hubungan" : true
+            "status_hubungan" : "menikah"
         },
         {
             "nama" : "Imam Abdul Ngizza",
             "umur" : 27,
             "tempat_lahir" : "Blitar",
             "pekerjaan" : "Karyawan swasta",
-            "status_hubungan" : false
+            "status_hubungan" : "belum menikah"
         },
         {
             "nama" : "Imam Mufiid",
             "umur" : 21,
             "tempat_lahir" : "Pangkalan Bun",
             "pekerjaan" : "Mahasiswa",
-            "status_hubungan" : false
+            "status_hubungan" : "belum menikah"
         }
     ]
 }
