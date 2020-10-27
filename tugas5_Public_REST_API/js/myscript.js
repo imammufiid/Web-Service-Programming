@@ -13,6 +13,7 @@ const listEndpoint = {
 const contents = document.querySelector('#content-list')
 const title = document.querySelector('#card-title')
 const loading = "<p><i>Tunggu sebentar...</i></p>"
+const errorAlert = "<p><i>Periksa kembali koneksi internet anda ...</i></p>"
 const fetchHeader = {
   headers: {
     'X-Auth-Token': ApiKey
@@ -49,6 +50,7 @@ function getListTeams() {
       })
     }).catch(e => {
       console.error(e);
+      contents.innerHTML = errorAlert
     })
 }
 
@@ -96,6 +98,7 @@ function getListStanding() {
       </table>`
     }).catch(e => {
       console.error(e);
+      contents.innerHTML = errorAlert
     })
 }
 
@@ -136,6 +139,7 @@ function getListMatches() {
     </table>`
     }).catch(e => {
       console.error(e);
+      contents.innerHTML = errorAlert
     })
 }
 
@@ -150,30 +154,40 @@ function showDetailTeam(id) {
     .then(resJson => {
       console.log(resJson);
       detail += `
-        <ul>
-          <li>
-            <i class="material-icons">account_circle</i>
-            <b>Name :</b> ${resJson.name}
-          </li>
-          <li>
-            <i class="material-icons">location_on</i>
-            <b>Address :</b> ${resJson.address}
-          </li>
-          <li>
-            <i class="material-icons">home</i>
-            <b>Venue :</b> ${resJson.venue}
-          </li>
-          <li>
-            <i class="material-icons">local_phone</i>
-            <b>Phone :</b> ${resJson.phone}
-          </li>
-          <li>
-            <i class="material-icons">personal_video</i>
-            <b>Website :</b> <a href="${resJson.website}" target="_blank">${resJson.website}</a>
-          </li>
-        </ul>
+      <div class="row">
+        <div class="col s8">
+            <ul>
+              <li>
+                <i class="material-icons">account_circle</i>
+                <b>Name :</b> ${resJson.name}
+              </li>
+              <li>
+                <i class="material-icons">location_on</i>
+                <b>Address :</b> ${resJson.address}
+              </li>
+              <li>
+                <i class="material-icons">home</i>
+                <b>Venue :</b> ${resJson.venue}
+              </li>
+              <li>
+                <i class="material-icons">local_phone</i>
+                <b>Phone :</b> ${resJson.phone}
+              </li>
+              <li>
+                <i class="material-icons">personal_video</i>
+                <b>Website :</b> <a href="${resJson.website}" target="_blank">${resJson.website}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col s4">
+            <img src="${resJson.crestUrl}" width="100px">
+          </div>
+        </div>
       `
       modalContent.innerHTML = detail
+    }).catch(e => {
+      console.error(e);
+      modalContent.innerHTML = errorAlert
     })
 }
 
